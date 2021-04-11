@@ -1,0 +1,116 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+	margin:20px;
+}
+
+h1{
+	color: #008000;
+}
+
+#saints {
+	width: 900px;
+	margin: 0 auto; 
+	padding: 20px;
+	border: 3px solid black;
+	box-shadow: 0 9px 18px 9px;
+}
+
+i{
+	font-size:60px;
+	color:#eeee00;
+	margin: 5px;
+}
+
+#googleBar{
+	flex-direction: row;
+	display: flex;
+	float: right;
+	margin-left: auto;
+	margin-bottom: 5px;
+}
+
+#googleInput{
+	width:500px
+}
+
+li { padding-right:20px;
+	font-size:150%;
+	
+}
+
+a {
+	color: purple;
+}
+	
+input{
+  border:1px solid #ccc;
+  min-height:30px;
+  outline: none;
+}
+
+.mainArea input {
+  margin-bottom:15px;
+  margin-top:5px;
+  width:280px;
+}
+
+#editTableForm span{
+	color:red;
+}
+
+#updateSaintBtn{
+	margin: 5px;
+}
+
+.form-control {
+	overflow-wrap: break-word
+}
+#description{
+	height: 200px;
+}
+
+.container .col {
+	background-color: #ffffbf;
+	padding: 10px;
+	margin:5px;
+	border-radius: 25px;
+	float: center;
+	
+}
+.container img{
+	height: 256px;
+	width: 197px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.container h4{
+	color: purple;
+	margin: 5px;
+	text-align: center;
+}
+.container p {
+	color: #808080;
+	text-align: justify;
+	margin: auto;
+}
+
+label {
+	display:block;
+}
+
+.nav{
+	margin:20px;
+}
+
+footer{
+	padding: 15px;
+	font-size:90%;
+	text-align: center;
+	border-top: 2px solid #c0c0c0;
+	color: #008000;
+}

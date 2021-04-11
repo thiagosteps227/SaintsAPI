@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Saints</title>
+<script src="js/jquery-3.6.0.js"></script>
+<script src="js/datatables.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/mainIndex.js"></script>
+<link rel="stylesheet" href="css/datatables.css"/>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/font-awesome.css"/>
+<link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+    <h1>My Favourite Saints</h1>
+    <!-- Nav tabs -->
+    <ul id="navbar" class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="#saints" role="tab" data-toggle="tab"><i class="fa fa-list"></i>Saints</a></li>
+        <li><a href="#other" role="tab" data-toggle="tab"><i class="fa fa-cog"></i>Admin</a></li>
+        <li id="googleBar"><a class="navbar-brand"></a>
+	        <form id="formGoogleSearch" class="form-inline" action="https://www.google.com/search" method="get">
+	        	<input id="googleInput"class="form-control mr-sm-2" type="search" placeholder="Search more Catholic Saints" aria-label="Search" name="q">
+	        	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	        </form>
+        </li>
+     </ul>
+<!-- Tab panes -->
+<div class="tab-content">
+      <div class="tab-pane active" id="home">
+            <!-- <h1>Home Page</h1> -->
+            <div class="container" id="grids">
+				<div class="row row-cols-auto" id="saintsGrid">
+				    <!-- GRIDS -->
+				</div>
+			</div>
+      </div>
+     
+        <div class="tab-pane" id="saints">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Century</th>
+                        <th>Action</th>
+                    </tr>
+                <tbody id="table_body"></tbody>
+            </table>
+         <!-- Modal in the table -->
+			<div class="modal fade" id="editSaintModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				     	<div class="modal-header">
+					    	<h5 class="modal-title" id="exampleModalLabel">Edit Saint</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					    </div>
+					     <div class="modal-body">
+					      <form id="editTableForm">
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">ID</label>
+								<div class="col-sm-10">
+									<input name="saintId" type="text" class="form-control" id="saintId" placeholder="ID" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Name</label>
+								<div class="col-sm-10">
+									<input name="name" type="text" class="form-control" id="name" placeholder="Name">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Country</label>
+								<div class="col-sm-10">
+									<input name="country" type="text" class="form-control" id="country" placeholder="Country">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">City</label>
+								<div class="col-sm-10">
+									<input name="city" type="text" class="form-control" id="city" placeholder="City">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Century</label>
+								<div class="col-sm-10">
+												<input name="century" type="text" class="form-control" id="century" placeholder="Century">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Description</label>
+								<div class="col-sm-10">
+									<textarea name="description" class="form-control" id="description" maxlength="250" placeholder="Max 250 characters..."></textarea>
+									<span id="descriptionChars"></span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Picture</label>
+								<div class="col-sm-10">
+									<input name="picture" type="text" class="form-control" id="picture" placeholder="Picture">
+								</div>
+							</div>	
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<input type="button" name="updateSaintBtn" id="updateSaintBtn" value="Update" class="btn btn-outline-success">
+								</div>
+							</div>
+						</form>
+				      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			      </div>
+			   </div>
+			</div>
+		</div>
+     </div>
+  <div class="tab-pane" id="other">
+    <h2>Create a new Saint</h2>
+    <button type="button" id="modalBtn" class="btn btn-primary">Create a Saint</button>
+
+<!-- The Create Saint Modal -->
+	<div class="modal" id="myModal">
+  	  <div class="modal-dialog">
+    	<div class="modal-content">
+
+      <!-- Modal Header -->
+      	<div class="modal-header">
+        	<h4 class="modal-title">Insert Saint details: </h4>
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+      	</div>
+
+      <!-- Modal body -->
+      	<div class="modal-body">
+       		<form id="createForm">
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Name</label>
+					<div class="col-sm-10">
+						<input name="name" type="text" class="form-control" id="createname" placeholder="Name">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Country</label>
+					<div class="col-sm-10">
+						<input name="country" type="text" class="form-control" id="createcountry" placeholder="Country">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">City</label>
+					<div class="col-sm-10">
+						<input name="city" type="text" class="form-control" id="createcity" placeholder="City">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Century</label>
+					<div class="col-sm-10">
+						<input name="century" type="text" class="form-control" id="createcentury" placeholder="Century">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Description</label>
+					<div class="col-sm-10">
+						<textarea name="description" class="form-control" id="createdescription" placeholder="Max length 250 characters" maxlength="250"></textarea>
+						<span id="createChars"></span>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Picture</label>
+					<div class="col-sm-10">
+						<input name="picture" type="text" class="form-control" id="createpicture" placeholder="Picture">
+					</div>
+				</div>
+			<div class="form-group row">
+				<div class="col-sm-10">
+					<input type="button" name="addNewSaintBtn" id="addNewSaintBtn" value="Add new Saint" class="btn btn-outline-success">
+				</div>
+			</div>
+		</form>
+      			<!-- Modal footer -->
+		     <div class="modal-footer">
+		       	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		     </div>
+    	</div>
+  	  </div>
+	</div>
+   </div>   
+  </div>
+</div>
+<footer>&copy; HDIP2021</footer>
+</body>
+</html>
